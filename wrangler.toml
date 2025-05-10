@@ -6,8 +6,9 @@ compatibility_date = "2023-08-15"
 enabled = true
 head_sampling_rate = 1 # optional. default = 1.
 
-[vars]
 # 开发环境的变量可以在这里设置
+[vars]
+DEEPSEEK_API_KEY= "sk-0bb7310816e94ea9b5610697bd2b1460"
 # 生产环境的敏感变量应使用 wrangler secret 命令设置
 [env.production.vars]
 DEEPSEEK_API_KEY= { type = "secret" }

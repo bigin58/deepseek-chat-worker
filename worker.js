@@ -13,7 +13,7 @@ const schema = buildSchema(`
     askDeepSeek(prompt: String!): String!
   }
 `);
-// const DEEPSEEK_API_KEY = 'sk-0bb7310816e94ea9b5610697bd2b1460';
+
 // Root resolver
 const root = {
   askDeepSeek: async ({ prompt }) => {
