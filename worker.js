@@ -15,7 +15,7 @@ const schema = buildSchema(`
 `);
 
 // Root resolver
-const root = {
+const root = (env) => ( {
   askDeepSeek: async ({ prompt }) => {
     try {
       // DeepSeek API 请求
@@ -44,7 +44,7 @@ const root = {
       throw new Error(`DeepSeek API error: ${error.message}`);
     }
   },
-};
+});
 
 // Worker 处理逻辑
 export default {
@@ -69,36 +69,7 @@ export default {
       const result = await execute({
         schema,
         document: parse(new Source(query)),
-        rootValue: {
-          askDeepSeek: async ({ prompt }) => {
-            try {
-              // DeepSeek API 请求
-              const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${env.DEEPSEEK_API_KEY}`, // 替换为你的 DeepSeek API Key
-                },
-                body: JSON.stringify({
-                  "model": "deepseek-chat",
-                  "messages": [
-                    { "role": "user", "content": prompt }
-                  ],
-                  "temperature": 0.7,
-                  "max_tokens": 1000
-                }),
-              });
-        
-              const data = await response.json();
-              if (data.choices && data.choices[0]) {
-                return data.choices[0].message.content.trim();
-              }
-              throw new Error('No valid response from DeepSeek');
-            } catch (error) {
-              throw new Error(`DeepSeek API error: ${error.message}`);
-            }
-          },
-        },
+        rootValue: root(env),
         variableValues: variables,
       });
 
