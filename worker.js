@@ -48,7 +48,7 @@ const root = {
 
 // Worker 处理逻辑
 export default {
-  async fetch(request) {
+  async fetch(request, env, ctx) {
     try {
 
       if (request.method === 'OPTIONS') {
