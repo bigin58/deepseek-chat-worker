@@ -23,7 +23,7 @@ const root = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.DEEPSEEK_API_KEY}`, // 替换为你的 DeepSeek API Key
+          'Authorization': `Bearer ${DEEPSEEK_API_KEY}`, // 替换为你的 DeepSeek API Key
         },
         body: JSON.stringify({
           "model": "deepseek-chat",
