@@ -13,7 +13,7 @@ const schema = buildSchema(`
     askDeepSeek(prompt: String!): String!
   }
 `);
-const DEEPSEEK_API_KEY = 'sk-0bb7310816e94ea9b5610697bd2b1460';
+// const DEEPSEEK_API_KEY = 'sk-0bb7310816e94ea9b5610697bd2b1460';
 // Root resolver
 const root = {
   askDeepSeek: async ({ prompt }) => {
@@ -23,7 +23,7 @@ const root = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${DEEPSEEK_API_KEY}`, // 替换为你的 DeepSeek API Key
+          'Authorization': `Bearer ${process.env.DEEPSEEK_API_KEY}`, // 替换为你的 DeepSeek API Key
         },
         body: JSON.stringify({
           "model": "deepseek-chat",
