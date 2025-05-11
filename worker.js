@@ -27,6 +27,7 @@ const root = (env) => ( {
         },
         body: JSON.stringify({
           "model": "deepseek-chat",
+          prompt,
           // "messages": [
           //   { "role": "user", "content": prompt }
           // ],
